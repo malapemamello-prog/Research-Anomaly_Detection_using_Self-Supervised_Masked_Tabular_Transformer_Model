@@ -26,7 +26,7 @@ weak proxy labels.
 Key words: ISO 20022 Payment Transactions; Anomaly Detection; Self-Supervised
 learning; Masked Tabular Transformer; Representation Learning.
 
-## Summary: Chapter 1
+## Chapter 1
 The study set up the case for using a self-supervised Masked Tabular Transformer to
 detect anomalies in ISO 20022 payment data. ISO 20022 is a global messaging standard
 that produces large volumes of rich, high-dimensional tabular data, which makes manual
@@ -41,7 +41,7 @@ and reconstruct anomalies as if they were normal, and little is known whether SS
 helps for tabular data. Therefore, a self-supervised model that can use large unlabeled
 transaction datasets effectively is a necessity.
 
-## Summary Chapter 2
+## Chapter 2
 This chapter reviewed the literature that bears on whether a model that learns the normal
 structure of payment messages can flag unusual transactions better than conventional
 detectors. ISO 20022 data is richly structured, but it is also high-dimensional and mixed
@@ -64,7 +64,7 @@ leaves it uncertain how well methods evaluated in supervised settings transfer t
 normality-learning settings. These gaps motivate the leakage-controlled evaluation of a
 Masked Tabular Transformer reported in the chapters that follow.
 
-## Summary Chapter 3
+## Chapter 3
 A quantitative research design was adopted, in which a self-supervised Masked Tabular
 Transformer was developed and evaluated against alternative detectors. The study
 used the synthetic ISO 20022 payments analytics dataset of 5,000 pacs.008 transactions
@@ -88,7 +88,7 @@ relied on a paired stratified bootstrap, the DeLong test, a paired permutation t
 exact McNemar test, with a Holm correction across the family of comparisons. The next
 chapter presents the results of this evaluation.
 
-## Summary Chapter 4
+## Chapter 4
 This chapter presented the results of the evaluation described in Chapter 3. The widened
 60-trial Optuna search consistently preferred mask ratios between 0.60 and 0.75, and the
 Masked Tabular Transformer (MTT) trial reached a pseudo-AUPRC of 0.922. The three
@@ -110,7 +110,7 @@ in size to some differences between models, which supports seed averaging and ca
 interpretation.
 Considering the dataset used, the results show that MTT was competitive but not superior
 detector.
-## Summary Chapter 5
+## Chapter 5
 This chapter related the findings of Chapter 4 to the research objectives, stated the
 limitations of the study and set out directions for future work. The study asked whether a
 self-supervised Masked Tabular Transformer (MTT), trained only on accepted transactions

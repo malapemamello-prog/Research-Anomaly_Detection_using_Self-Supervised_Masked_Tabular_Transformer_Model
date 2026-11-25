@@ -5,8 +5,9 @@ labels are very sparse, which limits supervised detection and can weaken classic
 The study developed and evaluated a self-supervised Masked Tabular Transformer (MTT)
 for anomaly detection in ISO 20022 payment transactions under a leakage-controlled
 design. A publicly available synthetic dataset of 5,000 transactions (6.4% rejected) was
-used, and post-outcome fields were removed through a leakage audit. The data was
-split chronologically, and all models were trained on accepted transactions only. The
+used, and post-outcome fields were removed through a leakage audit.
+
+The data was split chronologically, and all models were trained on accepted transactions only. The
 MTT was tuned with a 60-trial Optuna search on a label-free pseudo-anomaly set, and
 benchmarked against conventional anomaly detection methods, including Z-score analysis,
 Isolation Forest, and Local Outlier Factor. Evaluation focused on anomaly-detection
@@ -23,6 +24,7 @@ achieved an AUROC of 0.497, indicating that the permitted ex-ante fields contain
 no recoverable signal about rejection. The MTT is therefore capable of detecting controlled
 structural anomalies but shows no demonstrable advantage over simpler detectors for the
 weak proxy labels.
+
 Key words: ISO 20022 Payment Transactions; Anomaly Detection; Self-Supervised
 learning; Masked Tabular Transformer; Representation Learning.
 
@@ -33,8 +35,9 @@ that produces large volumes of rich, high-dimensional tabular data, which makes 
 inspection impractical and automated anomaly detection necessary. Labelled fraud data
 is scarce and costly, and that is where self-supervised learning comes in: a model learns
 useful representations from unlabeled data by solving a pretext task, and for tabular
-data that usually means masked modelling with transformers. The chapter highlights the
-necessity to test self-supervised representations in specific payment context.
+data that usually means masked modelling with transformers. 
+
+The chapter highlights the necessity to test self-supervised representations in specific payment context.
 Classical methods degrade as dimensionality grows, because distance-based separation
 stops being informative. Unsupervised reconstruction models can also generalise too well
 and reconstruct anomalies as if they were normal, and little is known whether SSL actually
@@ -49,6 +52,7 @@ in type, which weakens classical detectors and makes manual review impractical. 
 anomaly detection research relies mainly on labelled credit card data, whereas real payment
 operations offer few confirmed labels, and outcomes such as rejection are weak proxies for
 fraud.
+
 The framework combined three ideas: one-class normality learning, masked reconstruction,
 and attention-based representation learning, and it flags recurring difficulties: class
 imbalance, high dimensionality, non-stationarity, reconstruction of anomalies as if they
@@ -57,6 +61,7 @@ tabular transformers, and noted that the literature is divided on whether self-s
 representations outperform raw features, so that the superiority of the proposed model
 must be tested rather than assumed. The classical baselines were described, together with
 their algorithms
+
 Two gaps emerged: firstly, there is little evidence for masked self-supervised anomaly
 detection on ISO 20022 data, because published work concentrates on labelled credit
 card or retrospective fraud datasets. Second, label scarcity in real payment operations
@@ -78,6 +83,7 @@ TUNE, REF, CAL and TEST sets, with all detectors fitted on accepted transactions
 Because TxSts could not be used for tuning, hyperparameters were selected on a label-free
 pseudo-anomaly set built from TUNE-accepted records with six controlled corruption
 families, including a currency-shuffle null control.
+
 The Masked Tabular Transformer was compared with three classical baselines, all tuned
 on the same pseudo-anomaly set. The transformer was tuned with a 60-trial Optuna
 search, which is reported as exploratory because it followed prior exposure to TEST-set
@@ -94,6 +100,7 @@ This chapter presented the results of the evaluation described in Chapter 3. The
 Masked Tabular Transformer (MTT) trial reached a pseudo-AUPRC of 0.922. The three
 classical baselines, tuned on the same pseudo-anomaly set, were led by LOF (0.897), while
 Isolation Forest was clearly the weakest (0.549).
+
 The MTT with learned-field weighting (learn_max) was the strongest transformer variant
 (AUPRC 0.900) and the second-strongest detector overall. It improved most on the
 amount-tail family, where the AUROC of the standard ensemble rose from 0.788 to 0.996.
@@ -102,13 +109,13 @@ On the external TxSts endpoint, every model performed at chance (AUROC close to
 0.5, AUPRC lift close to 1). The MTT ranked eighth of ten by AUPRC (0.0635, lift
 0.92), and the widened search did not help on this endpoint. This is consistent with
 the supervised detectability probe, which showed that the permitted ex-ante fields carry
-almost no recoverable signal about rejection. Reconstruction quality was strong only
-for the near-deterministic location fields (Top-1 accuracy 1.00), while most numerical
+almost no recoverable signal about rejection.
+
+Reconstruction quality was strong only for the near-deterministic location fields (Top-1 accuracy 1.00), while most numerical
 fields were no better predicted than their own mean and PurposeCode remained close to
 chance. Seed variation (AUROC 0.451 and 0.494 across the two seeds) was comparable
 in size to some differences between models, which supports seed averaging and cautious
-interpretation.
-Considering the dataset used, the results show that MTT was competitive but not superior
+interpretation. Considering the dataset used, the results show that MTT was competitive but not superior
 detector.
 ## Chapter 5
 This chapter related the findings of Chapter 4 to the research objectives, stated the
@@ -147,7 +154,9 @@ recognise. However LOF, was significantly better than the MTT (difference = −0
 95% CI [−0.043, −0.020]), While MTT outperformed two classical baselines.
 These conclusions are bounded by the synthetic data, the small test set (1,000 transactions,
 69 rejections) and the exploratory nature of the re-tuning, which followed prior exposure
-to TEST-set behaviour. The Transformer is therefore a competitive but not superior
+to TEST-set behaviour. 
+
+The Transformer is therefore a competitive but not superior
 detector of structural anomalies, and the evidence does not yet justify its added complexity
 over simpler methods.
 As financial institutions adopt richer messaging standards, disciplined, endpoint-aware
